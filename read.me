@@ -1,0 +1,47 @@
+	USAGE:
+
+Open the main folder. 
+Configure sftp and database parameters in settings.py
+
+To perform the complete pipeline:
+run
+>manager.py
+It will run subsequently loader.py and parser.py.
+This command can be triggered by crontab.
+
+To process only cetain source:
+run
+>manager.py <source>
+
+
+	SPECIAL COMMANDS:
+
+To download new log files:
+run
+>loader.py [<source>]
+
+To re-download old logs again:
+either drop CommunicationLogs collection
+or run 
+>loader.py <source> <state>
+
+To parse the newly loaded logs:
+run
+>parser.py [<source>]
+It will fill Communications and Conversations collections.
+
+To re-parse old logs:
+either drop CommunicationLogs and re-download logs 
+or run 
+>parser.py <source> <state>
+
+To delete all the data for a certain source: 
+run
+>manager.py drop <source>
+
+
+	NOTES:
+
+Lexicon search is ignore-case and not whole-word.
+
+The scripts write log which is configurable in logger.py
